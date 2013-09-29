@@ -6,7 +6,7 @@ sys.path.insert(0, './third')
 
 import ConfigParser
 import logging
-from mData import makeSqliteConn, dbInitSqlite
+from mData import makeSqliteConn, dbInitSqlite, mData
 from optparse import OptionParser
 
 import tornado
@@ -20,13 +20,18 @@ class application(tornado.web.Application):
         from urls import wwwUrls
 
         dbConns = dict()
-        dbConns['sqldb'] = makeSqliteConn(globalConfig.get('sqldb', 'sqlite'))
+        sqliteConn = makeSqliteConn(globalConfig.get('sqldb', 'sqlite'))
+        dbConns['sqldb'] = sqliteConn
+
+        mods = dict()
+        mods['mData'] = mData(sqliteConn)
 
         from settings import wwwSettings
         settings = dict()
         settings.update(wwwSettings)
         settings.update(dbConns)
         settings.update(globalConfig=globalConfig)
+        settings.update(mods=mods)
 
         tornado.web.Application.__init__(self, wwwUrls, **settings)
 

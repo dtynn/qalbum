@@ -24,8 +24,8 @@ sqlForSqlite = [
         `file_size` INTEGER NOT NULL DEFAULT 0 ,
         `file_type` TEXT NOT NULL DEFAULT "" ,
         `created_at` INTEGER NOT NULL DEFAULT 0 ,
-        `hash` TEXT NOT NULL DEFAULT "" ,
-        `ops_id` TEXT NOT NULL DEFAULT "",
+        `hash` TEXT NOT NULL ,
+        `ops_id` TEXT NOT NULL UNIQUE,
         `ops_status` INTEGER NOT NULL DEFAULT 0
     )
     ''',
