@@ -44,7 +44,7 @@ class mData(object):
         return res
 
     def VideoGetNotify(self, pid):
-        table = 'qalbum_videos'
+        table = 'qalbum_notify'
         sql = '''
         SELECT data FROM %s WHERE pid=?
         ''' % (table, )
