@@ -5,7 +5,7 @@ import sqlite3
 
 
 sqlForSqlite = [
-    'DROP TABLE IF EXISTS `users`',
+    #'DROP TABLE IF EXISTS `users`',
     '''
     CREATE TABLE IF NOT EXISTS `qalbum_users` (
         `uid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -16,7 +16,7 @@ sqlForSqlite = [
         `updated_at` INTEGER NOT NULL DEFAULT 0
     )
     ''',
-    'DROP TABLE IF EXISTS `qalbum_videos`',
+    #'DROP TABLE IF EXISTS `qalbum_videos`',
     '''
     CREATE TABLE IF NOT EXISTS `qalbum_videos` (
         `vid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -25,16 +25,23 @@ sqlForSqlite = [
         `file_type` TEXT NOT NULL DEFAULT "" ,
         `created_at` INTEGER NOT NULL DEFAULT 0 ,
         `hash` TEXT NOT NULL ,
-        `ops_id` TEXT NOT NULL UNIQUE,
-        `ops_status` INTEGER NOT NULL DEFAULT 0
+        `pid` TEXT NOT NULL UNIQUE,
+        `pstatus` INTEGER NOT NULL DEFAULT -1
     )
     ''',
-    'DROP TABLE IF EXISTS `qalbum_session`',
+    #'DROP TABLE IF EXISTS `qalbum_session`',
     '''
     CREATE TABLE IF NOT EXISTS `qalbum_session` (
         `sid` TEXT NOT NULL PRIMARY KEY ,
-        `user_id` INTEGER NOT NULL DEFAULT 0 ,
+        `uid` INTEGER NOT NULL DEFAULT 0 ,
         `data` TEXT NOT NULL DEFAULT ""
+    )
+    ''',
+    #'DROP TABLE IF EXISTS `qalbum_notify`',
+    '''
+    CREATE TABLE IF NOT EXISTS `qalbum_notify` (
+        `pid` TEXT NOT NULL PRIMARY KEY ,
+        `data` TEXT NOT NULL
     )
     ''',
 ]
@@ -47,12 +54,10 @@ def dbInitSqlite(dbPath):
 
 
 def dbInit(conn, sqls):
-    from uuid import uuid4
-    conn.execute('insert into qalbum_users(username, password) values (?, ?)', (uuid4().hex, uuid4().hex))
-    res = conn.query('select * from qalbum_users')
-    print len(res)
-    #for sql in sqls:
-    #    conn.execute(sql)
+    logging.debug('DB initializing')
+    for sql in sqls:
+        conn.execute(sql)
+    logging.debug('DB initialized')
     return
 
 

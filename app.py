@@ -2,7 +2,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sys.path.insert(0, './third')
+sys.path.insert(0, './mods')
 
 import ConfigParser
 import logging
