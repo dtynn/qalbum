@@ -24,5 +24,6 @@ class PageNotifyHdl(WwwBaseHdl):
         mDataMod = self.settings['mods']['mData']
         if pid:
             notify = mDataMod.VideoGetNotify(pid)
-            self.write(notify)
+            if notify:
+                self.write(notify)
         return
