@@ -46,7 +46,7 @@ class ApiPersistentNotifyHdl(WwwBaseHdl):
             data = self.request.body
             dataObj = json.loads(data)
             pid = dataObj.get('id')
-            status = dataObj.get('code') + 1
+            status = dataObj.get('code')
             if pid:
                 mDataMod = self.settings['mods']['mData']
                 res = 0 if mDataMod.VideoUpdateOpsStatus(pid, status, data) else 1

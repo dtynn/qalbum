@@ -42,3 +42,11 @@ class mData(object):
         ''' % (table,)
         res = self.dbConn.query(sql)
         return res
+
+    def VideoGetNotify(self, pid):
+        table = 'qalbum_videos'
+        sql = '''
+        SELECT data FROM %s WHERE pid=?
+        ''' % (table, )
+        res = self.dbConn.get(sql, (pid,))
+        return res
