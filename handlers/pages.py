@@ -8,3 +8,11 @@ class PageIndexHdl(WwwBaseHdl):
         selfHost = globalConf.get('website', 'host')
         self.render('upload.html', selfHost=selfHost)
         return
+
+
+class PageListHdl(WwwBaseHdl):
+    def get(self):
+        mDataMod = self.settings['mods']['mData']
+        videoList = mDataMod.VideoListAll()
+        self.ajax_finish(videoList)
+        return

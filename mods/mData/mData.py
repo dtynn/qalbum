@@ -34,3 +34,11 @@ class mData(object):
         ''' % (table,)
         res = self.dbConn.execute(sql, (opsId, data))
         return res > 0
+
+    def VideoListAll(self):
+        table = 'qalbum_videos'
+        sql = '''
+        SELECT vid, uid, created_at, hash, pid, pstatus FROM %s ORDER BY vid DESC
+        ''' % (table,)
+        res = self.dbConn.query(sql)
+        return res
