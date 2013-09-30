@@ -19,8 +19,12 @@ class application(tornado.web.Application):
     def __init__(self, globalConfig):
         from urls import wwwUrls
 
+        dbPath = globalConfig.get('sqldb', 'sqlite')
+
+        dbInitSqlite(dbPath)
+
         dbConns = dict()
-        sqliteConn = makeSqliteConn(globalConfig.get('sqldb', 'sqlite'))
+        sqliteConn = makeSqliteConn(dbPath)
         dbConns['sqldb'] = sqliteConn
 
         mods = dict()
@@ -70,8 +74,6 @@ def main():
     confFile = open(opts.conf_path, 'r')
     globalConfig = ConfigParser.ConfigParser()
     globalConfig.readfp(confFile)
-
-    dbInitSqlite('test.db')
 
     app = application(globalConfig)
     server = HTTPServer(app, xheaders=True)

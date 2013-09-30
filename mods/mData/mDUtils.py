@@ -48,16 +48,16 @@ sqlForSqlite = [
 
 
 def dbInitSqlite(dbPath):
+    logging.debug('DB initializing:%s' % (dbPath,))
     conn = makeSqliteConn(dbPath)
     dbInit(conn, sqlForSqlite)
+    logging.debug('DB initialized')
     return
 
 
 def dbInit(conn, sqls):
-    logging.debug('DB initializing')
     for sql in sqls:
         conn.execute(sql)
-    logging.debug('DB initialized')
     return
 
 
