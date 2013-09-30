@@ -14,10 +14,10 @@ class ApiUpTokenHdl(WwwBaseHdl):
         qConf.ACCESS_KEY = accessKey
         qConf.SECRET_KEY = secretKey
         policy = qRs.PutPolicy(bucket)
-        #policy.callbackUrl = '%s/api/q_callback' % (selfHost,)
-        #policy.callbackBody = 'etag=$(etag)&opsId=$(persistentId)'
-        #policy.persistentOps = 'avthumb/video_240k'
-        #policy.persistentNotifyUrl = '%s/api/q_notify' % (selfHost,)
+        policy.callbackUrl = '%s/api/q_callback' % (selfHost,)
+        policy.callbackBody = 'etag=$(etag)&opsId=$(persistentId)'
+        policy.persistentOps = 'avthumb/video_240k'
+        policy.persistentNotifyUrl = '%s/api/q_notify' % (selfHost,)
         uploadToken = policy.token()
         self.ajax_result(0, 0, data=uploadToken)
         return
