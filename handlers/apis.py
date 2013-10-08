@@ -16,7 +16,7 @@ class ApiUpTokenHdl(WwwBaseHdl):
         policy = qRs.PutPolicy(bucket)
         policy.callbackUrl = '%s/api/q_callback' % (selfHost,)
         policy.callbackBody = 'etag=$(etag)&opsId=$(persistentId)'
-        policy.persistentOps = 'avthumb/m3u8/preset/video_240k'
+        policy.persistentOps = 'avthumb/m3u8/preset/video_240k;avthumb/android'
         policy.persistentNotifyUrl = '%s/api/q_notify' % (selfHost,)
         uploadToken = policy.token()
         self.ajax_result(0, 0, data=uploadToken)

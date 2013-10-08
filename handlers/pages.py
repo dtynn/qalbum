@@ -27,3 +27,9 @@ class PageNotifyHdl(WwwBaseHdl):
             if notify:
                 self.write(notify)
         return
+
+
+class PagePlayerHdl(WwwBaseHdl):
+    def get(self):
+        self.render('player.html')
+        return
