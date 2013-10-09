@@ -50,3 +50,11 @@ class mData(object):
         ''' % (table, )
         res = self.dbConn.get(sql, (pid,))
         return res
+
+    def VideoGet(self, vid):
+        table = 'qalbum_videos'
+        sql = '''
+        SELECT vid, uid, created_at, hash, pid, pstatus FROM %s WHERE vid=?
+        ''' % (table,)
+        res = self.dbConn.get(sql, (vid,))
+        return res

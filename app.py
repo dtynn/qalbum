@@ -67,7 +67,7 @@ def main():
     logging.basicConfig(level=opts.loglevel,
                         format='[%(levelname)1.1s %(asctime)1.19s %(module)s:%(lineno)d] %(message)s')
 
-    logging.info('WWW Application fork %s' % (opts.process, ))
+    logging.info('VIDEO Application fork %s' % (opts.process, ))
     logging.info('Config dir %s' % (opts.conf_path, ))
     logging.info("Listening on port: %s " % (opts.port, ))
 

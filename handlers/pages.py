@@ -1,5 +1,6 @@
 #coding=utf-8
 from base import WwwBaseHdl
+from tornado.httpclient import HTTPError
 
 
 class PageIndexHdl(WwwBaseHdl):
@@ -31,5 +32,18 @@ class PageNotifyHdl(WwwBaseHdl):
 
 class PagePlayerHdl(WwwBaseHdl):
     def get(self):
-        self.render('player.html')
+        try:
+            vid = int(self.get_argument('vid'))
+        except (HTTPError, ValueError, TypeError):
+            self.write('404')
+            return
+        mDataMod = self.settings['mods']['mData']
+        res = mDataMod.VideoGet(vid)
+        if res:
+            etag = res['hash']
+            globalConf = self.settings['globalConfig']
+            domain = globalConf.get('qiniu', 'domain')
+            self.render('player.html', domain=domain, etag=etag)
+            return
+        self.write('404')
         return
