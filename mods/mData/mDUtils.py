@@ -21,6 +21,7 @@ sqlForSqlite = [
     CREATE TABLE IF NOT EXISTS `qalbum_videos` (
         `vid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         `uid` INTEGER NOT NULL DEFAULT 0 ,
+        `file_name` TEXT NOT NULL DEFAULT "" ,
         `file_size` INTEGER NOT NULL DEFAULT 0 ,
         `file_type` TEXT NOT NULL DEFAULT "" ,
         `created_at` INTEGER NOT NULL DEFAULT 0 ,

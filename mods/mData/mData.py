@@ -7,13 +7,13 @@ class mData(object):
         self.dbConn = dbConn
         return
 
-    def VideoAdd(self, uid, fileKey, opsId):
+    def VideoAdd(self, uid, fileKey, fileName, opsId):
         table = 'qalbum_videos'
         sql = '''
-        INSERT INTO %s(uid, created_at, hash, pid) VALUES (?, ?, ?, ?)
+        INSERT INTO %s(uid, created_at, hash, pid, file_name) VALUES (?, ?, ?, ?, ?)
         ''' % (table,)
         now = int(time.time())
-        res = self.dbConn.execute(sql, (uid, now, fileKey, opsId))
+        res = self.dbConn.execute(sql, (uid, now, fileKey, opsId, fileName))
         return res > 0
 
     def VideoUpdateOpsStatus(self, opsId, status, data):

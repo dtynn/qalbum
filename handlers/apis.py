@@ -15,7 +15,7 @@ class ApiUpTokenHdl(WwwBaseHdl):
         qConf.SECRET_KEY = secretKey
         policy = qRs.PutPolicy(bucket)
         policy.callbackUrl = '%s/api/q_callback' % (selfHost,)
-        policy.callbackBody = 'etag=$(etag)&opsId=$(persistentId)'
+        policy.callbackBody = 'etag=$(etag)&opsId=$(persistentId)&file_name=$(x:file_name)'
         policy.persistentOps = 'avthumb/m3u8/preset/video_240k;avthumb/android'
         policy.persistentNotifyUrl = '%s/api/q_notify' % (selfHost,)
         uploadToken = policy.token()
@@ -27,10 +27,11 @@ class ApiUpCallbackHdl(WwwBaseHdl):
     def post(self):
         etag = self.get_argument('etag', '')
         opsId = self.get_argument('opsId', '')
+        file_name = self.get_argument('file_name', '')
         if etag and opsId:
             uid = 0
             mDataMod = self.settings['mods']['mData']
-            res = 0 if mDataMod.VideoAdd(uid, etag, opsId) else 1
+            res = 0 if mDataMod.VideoAdd(uid, etag, opsId, file_name) else 1
             extra = dict()
             extra['key'] = etag
             self.ajax_result(1, res, extra=extra)

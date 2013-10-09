@@ -83,12 +83,7 @@ function uploadStart(file) {
 		progress.setStatus("Uploading...");
 		progress.toggleCancel(true, this);
 
-                // 首先，为该文件生成一个唯一ID
-                // uniqid() 函数在 public/assets/js/uniqid.js 文件中有定义
-                var fileUniqKey = uniqid(file.name);
- 
-                // 将该文件唯一ID临时保存起来供后续使用
-                this.customSettings.fileUniqIdMapping[file.id] = fileUniqKey;
+        this.addPostParam("x:file_name", file.name);
 	}
 	catch (ex) {}
 
