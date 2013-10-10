@@ -31,7 +31,7 @@ class ApiUpCallbackHdl(WwwBaseHdl):
         if etag and opsId:
             uid = 0
             mDataMod = self.settings['mods']['mData']
-            res = 0 if mDataMod.VideoAdd(uid, etag, opsId, file_name) else 1
+            res = 0 if mDataMod.VideoAdd(uid, etag, file_name, opsId) else 1
             extra = dict()
             extra['key'] = etag
             self.ajax_result(1, res, extra=extra)
