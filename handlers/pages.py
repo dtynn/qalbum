@@ -15,7 +15,8 @@ class PageListHdl(WwwBaseHdl):
     def get(self):
         mDataMod = self.settings['mods']['mData']
         videoList = mDataMod.VideoListAll()
-        self.ajax_finish(videoList)
+        self.finish(videoList)
+        #self.render('list_all.html', videoList=videoList)
         return
 
 
