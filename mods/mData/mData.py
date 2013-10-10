@@ -38,7 +38,7 @@ class mData(object):
     def VideoListAll(self):
         table = 'qalbum_videos'
         sql = '''
-        SELECT vid, uid, created_at, hash, file_name, pid, pstatus FROM %s ORDER BY vid DESC
+        SELECT vid, uid, created_at, hash, file_name, file_size, pid, pstatus FROM %s ORDER BY vid DESC
         ''' % (table,)
         res = self.dbConn.query(sql)
         return res
@@ -54,7 +54,7 @@ class mData(object):
     def VideoGet(self, vid):
         table = 'qalbum_videos'
         sql = '''
-        SELECT vid, uid, created_at, hash, file_name, pid, pstatus FROM %s WHERE vid=?
+        SELECT vid, uid, created_at, hash, file_name, file_size pid, pstatus FROM %s WHERE vid=?
         ''' % (table,)
         res = self.dbConn.get(sql, (vid,))
         return res
