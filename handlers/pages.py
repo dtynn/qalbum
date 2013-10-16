@@ -47,3 +47,9 @@ class PagePlayerHdl(WwwBaseHdl):
             return
         self.write('404')
         return
+
+
+class PagePlayerTestHdl(WwwBaseHdl):
+    def get(self):
+        self.render('player_test.html')
+        return
