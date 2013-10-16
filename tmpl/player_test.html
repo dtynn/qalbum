@@ -15,7 +15,11 @@
             playlist: [{
                 file:'http://video-demo.u.qiniudn.com/lloW2lVNPbX3-mRwdzK17ggjXLF_-v240.m3u8',
                 provider:'/static/jwplayer6/HLSProvider6.swf',
-                type: "hls"
+                type: "hls",
+                tracks: [{
+                    file: "http://video-demo.u.qiniudn.com/test.vtt",
+                    kind: "thumbnails"
+                }]
             }],
             primary: "flash",
             height: 360,
