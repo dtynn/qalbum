@@ -54,7 +54,9 @@ class mData(object):
     def VideoGet(self, vid):
         table = 'qalbum_videos'
         sql = '''
-        SELECT vid, uid, created_at, hash, file_name, file_size pid, pstatus FROM %s WHERE vid=?
+        SELECT vid, uid, created_at, hash, file_name, file_size pid, pstatus
+        FROM %s
+        WHERE vid=? AND pstatus=0
         ''' % (table,)
         res = self.dbConn.get(sql, (vid,))
         return res

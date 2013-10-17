@@ -7,6 +7,7 @@ sys.path.insert(0, './mods')
 import ConfigParser
 import logging
 from mData import makeSqliteConn, dbInitSqlite, mData
+from mUtils import mUtils
 from optparse import OptionParser
 
 import tornado
@@ -29,6 +30,7 @@ class application(tornado.web.Application):
 
         mods = dict()
         mods['mData'] = mData(sqliteConn)
+        mods['mUtils'] = mUtils(globalConfig)
 
         from settings import wwwSettings
         settings = dict()

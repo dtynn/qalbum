@@ -34,6 +34,9 @@ class ApiUpCallbackHdl(WwwBaseHdl):
             uid = 0
             mDataMod = self.settings['mods']['mData']
             res = 0 if mDataMod.VideoAdd(uid, etag, file_name, file_size, opsId) else 1
+            if res == 0:
+                mUtilsMod = self.settings['mods']['mUtils']
+                mUtilsMod.qvttUpload(etag)
             extra = dict()
             extra['key'] = etag
             self.ajax_result(1, res, extra=extra)
