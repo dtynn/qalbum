@@ -6,24 +6,31 @@
 </head>
 <body>
     <div>
-        <tr>
-            <th>文件名</th>
-            <th>大小</th>
-            <th>上传时间</th>
-            <th>状态</th>
-        </tr>
-        {% if vList %}
-        {% for v in vList %}
-        <tr>
-            <td>{{ v['file_name'] }}</td>
-            <td>{{ v['file_size'] }}</td>
-            <td>{{ v['created_at'] }}</td>
-            <td>{{ v['pstatus'] }}</td>
-        </tr>
-        {% end %}
-        {% else %}
-        <p></p>
-        {% end %}
+        <table>
+            <tr>
+                <th>文件名</th>
+                <th>大小</th>
+                <th>上传时间</th>
+                <th>状态</th>
+            </tr>
+            {% if vList %}
+            {% for v in vList %}
+            <tr>
+                <td>{{ v['file_name'] }}</td>
+                <td>{{ v['file_size'] }}</td>
+                <td>{{ v['created_at'] }}</td>
+                <td>{{ v['pstatus'] }}</td>
+            </tr>
+            {% end %}
+            {% else %}
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            {% end %}
+        </table>
     </div>
 </body>
 </html>
