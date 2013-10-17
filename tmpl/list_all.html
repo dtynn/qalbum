@@ -24,7 +24,7 @@
                     {% if v['pstatus'] == 0 %}
                     <a href="/player?vid={{ v['vid'] }}" target="_blank">可观看</a>
                     {% else %}
-                    {{ status.get(v['pstatus']) }}
+                    {{ status.get(v['pstatus'], '等待处理') }}
                     {% end %}
                 </td>
             </tr>
