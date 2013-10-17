@@ -18,8 +18,14 @@
             <tr>
                 <td>{{ v['file_name'] }}</td>
                 <td>{{ v['file_size'] }}</td>
-                <td>{{ v['created_at'] }}</td>
-                <td>{{ v['pstatus'] }}</td>
+                <td>{{ time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(v['created_at'])) }}</td>
+                <td>
+                    {% if v['pstatus'] == 0 %}
+                    <a href="/player?vid={{ v['vid'] }}" target="_blank">可观看</a>
+                    {% else %}
+                    {{ status.get(v['pstatus']) }}
+                    {% end %}
+                </td>
             </tr>
             {% end %}
             {% else %}
@@ -34,6 +40,6 @@
     </div>
 </body>
 <style type="text/css">
-    tr, td {padding: 10px;text-align: center}
+    th, td {padding: 10px;text-align: center}
 </style>
 </html>

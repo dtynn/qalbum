@@ -1,6 +1,7 @@
 #coding=utf-8
 from base import WwwBaseHdl
 from tornado.httpclient import HTTPError
+import time
 
 
 class PageIndexHdl(WwwBaseHdl):
@@ -15,8 +16,13 @@ class PageListHdl(WwwBaseHdl):
     def get(self):
         mDataMod = self.settings['mods']['mData']
         videoList = mDataMod.VideoListAll()
-        self.render('list_all.html', vList=videoList)
-        #self.ajax_finish(videoList)
+        status = {
+            1: '等待处理',
+            2: '正在处理',
+            3: '处理失败',
+            4: '回调失败',
+        }
+        self.render('list_all.html', vList=videoList, status=status, time=time)
         return
 
 
