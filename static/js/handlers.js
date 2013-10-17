@@ -114,7 +114,7 @@ function uploadSuccess(file, serverData) {
                 var ret = eval('(' + serverData + ')');
                 //按实际的应用需求修改判断上传成功的标准
                 if (ret.key) {
-                    alert(ret.key);
+                    alert("上传成功");
                 } else {
                     alert("上传失败");
                 }

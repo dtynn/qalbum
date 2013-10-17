@@ -4,7 +4,7 @@ from tornado.httpclient import HTTPError
 import time
 
 
-class PageIndexHdl(WwwBaseHdl):
+class PageUploadHdl(WwwBaseHdl):
     def get(self):
         globalConf = self.settings['globalConfig']
         selfHost = globalConf.get('website', 'host')

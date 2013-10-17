@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="content">
-    <p>请选择任意图片。</p>
+    <p>请选择任意视频，后缀名允许avi、mov、mp4、flv。</p>
     <br />
     <form id="form1" action="index.php" method="post" enctype="multipart/form-data">
         <div class="fieldset flash" id="fsUploadProgress">
@@ -26,6 +26,9 @@
             <input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
         </div>
     </form>
+    <div>
+        <a href="/">返回文件列表</a>
+    </div>
 </div>
 <div id="imgUrl">
 
@@ -42,8 +45,8 @@
             use_query_string: false,
             file_post_name: "file",
             file_size_limit : "30 MB",
-            file_types : "*.png;*.jpg;*.jpeg;*.gif;*.mov;*.mp4",
-            file_types_description: "Files For Test",
+            file_types : "*.avi;*.mov;*.mp4;*.flv;*.AVI;*.MOV;*.MP4;*.FLV",
+            file_types_description: "Video File",
             file_upload_limit : 100,
             file_queue_limit : 1,
             custom_settings : {

@@ -2,8 +2,9 @@
 from handlers import *
 
 wwwUrls = [
-    (r'/', PageIndexHdl),
-    (r'/list', PageListHdl),
+    (r'/upload', PageUploadHdl),
+    #(r'/list', PageListHdl),
+    (r'/', PageListHdl),
     (r'/notify', PageNotifyHdl),
     (r'/player', PagePlayerHdl),
     (r'/player_test', PagePlayerTestHdl),
